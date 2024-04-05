@@ -263,9 +263,6 @@ app.post("/update-delete-project", (req, resp) => {
     })
 })
 
-app.get("/", (req, resp) => {
-    resp.render('index.html');
-})
 // console.log("Current directory:", __dirname);
 
 app.listen(port, () => {
