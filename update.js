@@ -7,18 +7,15 @@ const port = 3200;
 var cors = require('cors');
 app.use(cors());
 app.options('*', cors());
-var allowCrossDomain = function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-}
-app.use(allowCrossDomain);
+// var allowCrossDomain = function (req, res, next) {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type');
+//     next();
+// }
+// app.use(allowCrossDomain);
 // app.set('', __dirname + '/');
 // app.engine('html', require('ejs').renderFile);
-const https = require("https");
-const request = require('request');
-const client = require('ftp');
 const multer = require('multer');
 // https://elegant-puppy-6d6e58.netlify.app/data.json
 
