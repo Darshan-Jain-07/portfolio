@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Admin (Darshan Jain)</title>
+</head>
+
+<body>
+  <div class="container pt-5">
+    <div class="mb-3">
+      <label for="formGroupExampleInput" class="form-label">Project Name</label>
+      <input type="text" class="form-control" id="projectName" placeholder="Enter the Project Name">
+    </div>
+    <div class="mb-3">
+      <label for="formGroupExampleInput" class="form-label">Project Description</label>
+      <input type="text" class="form-control" id="projectDescription" placeholder="Enter the project Description">
+    </div>
+    <div class="mb-3">
+      <label for="formGroupExampleInput" class="form-label">Project Link</label>
+      <input type="text" class="form-control" id="projectLink" placeholder="Enter the project Link">
+    </div>
+    <button class="btn btn-dark" onclick="editProject()">Submit</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- <script src="/app.js"></script> -->
+  <script>
+    function editProject(){
+      fetch('https://portfolio-g6y2.onrender.com/update-edit-project',{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify({"Name":`${document.getElementById("projectName").value}`,"description":`${document.getElementById("projectDescription").value}`,"link":`${document.getElementById("projectLink").value}`})
+      }).then(response => response.json())
+        .then(data => {console.log(data)
+      }).catch(error => {console.error(error)});
+    }
+  </script>
+  <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+</body>
+
+</html>
