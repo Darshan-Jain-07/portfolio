@@ -5,6 +5,7 @@ const fs = require('fs');
 app.use(express.json());
 const port = 3200;
 var cors = require('cors');
+const { render } = require('express/lib/response');
 app.use(cors());
 app.options('*',cors());
 var allowCrossDomain = function(req,res,next) {
@@ -14,6 +15,8 @@ var allowCrossDomain = function(req,res,next) {
   next();  
 }
 app.use(allowCrossDomain);
+app.set('views', __dirname + '/');
+app.engine('html', require('ejs').renderFile);
 
 app.post("/update-description",(req,resp)=>{
     let desc = req.body
