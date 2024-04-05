@@ -61,6 +61,7 @@ app.post('/api/upload', upload.single('file'), (req, resp) => {
 
 app.post("/update-add-skill", upload.single('file'), (req, resp) => {
     let skill = req.body;
+    console.log("Current directory:", __dirname);
     fs.readFile('data.json', 'utf8', function(err, data){
         console.log(data);
         console.log(skill);
