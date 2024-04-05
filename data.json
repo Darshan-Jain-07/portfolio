@@ -1,1 +1,83 @@
-{"description":"Hii","skillsData":[{"skillName":"C++","percent":"90","id":1},{"skillName":"HTML","percent":"100","id":2},{"skillName":"Python","percent":"75","id":3},{"skillName":"NodeJS","percent":"68","id":4},{"skillName":"CSS","percent":"90","id":5},{"skillName":"C","percent":"55","id":6}],"projectsData":[{"Name":"E-commerce Website","description":"This website is about selling our preoduct Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat repellat magnam quo cumque officiis dolorum sunt, omnis quisquam mollitia. Voluptatem illo, incidunt esse vero illum dicta adipisci unde et corporis.","link":"https://artistrynam.my-style.in/","id":1},{"Name":"E-commerce Website","description":"This website is about selling our preoduct Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat repellat magnam quo cumque officiis dolorum sunt, omnis quisquam mollitia. Voluptatem illo, incidunt esse vero illum dicta adipisci unde et corporis.","link":"https://artistrynam2.my-style.in/","id":2},{"Name":"E-commerce Website","description":"This website is about selling our preoduct Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat repellat magnam quo cumque officiis dolorum sunt, omnis quisquam mollitia. Voluptatem illo, incidunt esse vero illum dicta adipisci unde et corporis.","link":"https://artistrynam3.my-style.in/","id":3},{"Name":"E-commerce Website","description":"This website is about selling our preoduct Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat repellat magnam quo cumque officiis dolorum sunt, omnis quisquam mollitia. Voluptatem illo, incidunt esse vero illum dicta adipisci unde et corporis.","link":"https://artistrynam4.my-style.in/","id":4}],"qualificationsData":[{"course":"10th","percent":50,"color":"#ec7aec"},{"course":"12th","percent":80,"color":"#ec7aec"},{"course":"FY BSc IT","percent":70,"color":"#ec7aec"},{"course":"SY BSc IT","percent":60,"color":"#ec7aec"}]}
+{
+    "description": "Hii",
+    "skillsData": [
+        {
+            "skillName": "C++",
+            "percent": "90",
+            "id": 1
+        },
+        {
+            "skillName": "HTML",
+            "percent": "100",
+            "id": 2
+        },
+        {
+            "skillName": "Python",
+            "percent": "75",
+            "id": 3
+        },
+        {
+            "skillName": "NodeJS",
+            "percent": "68",
+            "id": 4
+        },
+        {
+            "skillName": "CSS",
+            "percent": "90",
+            "id": 5
+        },
+        {
+            "skillName": "C",
+            "percent": "55",
+            "id": 6
+        }
+    ],
+    "projectsData": [
+        {
+            "Name": "E-commerce Website",
+            "description": "This website is about selling our preoduct Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat repellat magnam quo cumque officiis dolorum sunt, omnis quisquam mollitia. Voluptatem illo, incidunt esse vero illum dicta adipisci unde et corporis.",
+            "link": "https://artistrynam.my-style.in/",
+            "id": 1
+        },
+        {
+            "Name": "E-commerce Website",
+            "description": "This website is about selling our preoduct Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat repellat magnam quo cumque officiis dolorum sunt, omnis quisquam mollitia. Voluptatem illo, incidunt esse vero illum dicta adipisci unde et corporis.",
+            "link": "https://artistrynam2.my-style.in/",
+            "id": 2
+        },
+        {
+            "Name": "E-commerce Website",
+            "description": "This website is about selling our preoduct Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat repellat magnam quo cumque officiis dolorum sunt, omnis quisquam mollitia. Voluptatem illo, incidunt esse vero illum dicta adipisci unde et corporis.",
+            "link": "https://artistrynam3.my-style.in/",
+            "id": 3
+        },
+        {
+            "Name": "E-commerce Website",
+            "description": "This website is about selling our preoduct Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat repellat magnam quo cumque officiis dolorum sunt, omnis quisquam mollitia. Voluptatem illo, incidunt esse vero illum dicta adipisci unde et corporis.",
+            "link": "https://artistrynam4.my-style.in/",
+            "id": 4
+        }
+    ],
+    "qualificationsData": [
+        {
+            "course": "10th",
+            "percent": 50,
+            "color": "#ec7aec"
+        },
+        {
+            "course": "12th",
+            "percent": 80,
+            "color": "#ec7aec"
+        },
+        {
+            "course": "FY BSc IT",
+            "percent": 70,
+            "color": "#ec7aec"
+        },
+        {
+            "course": "SY BSc IT",
+            "percent": 60,
+            "color": "#ec7aec"
+        }
+    ]
+}
