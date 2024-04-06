@@ -1,10 +1,27 @@
 // Description text code
 let jsonObj = {};
-fetch('./data.json')
-  .then((response) => response.json())
-  .then((json) => {
+fetch('https://portfolio-g6y2.onrender.com/jsondata', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json; charset=utf-8' }
+}).then(json => {
+  console.log("hii")
+  console.log(json.json().then((json) => {
     console.log(json)
-    console.log(json.description)
+
+    // console.log(response.body) 
+
+    // .then((response) => response.json())
+    // .then((json) => {
+    //   console.log(json)
+    //   json = JSON.parse(json)
+    // fetch('http://localhost:3200/api/upload', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    //     body: JSON.stringify({ "file": "data2.json" })
+    // }).then(response => {
+    //     return response.json();
+    // }).catch(err => { console.log(err); });
+    // console.log(json.description)
     let description = json.description
     let desc = document.getElementById("descriptionText");
     desc.innerHTML = `
@@ -95,5 +112,5 @@ fetch('./data.json')
 </div>
   `;
     });
-
-  });
+  }))
+});

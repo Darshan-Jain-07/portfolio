@@ -33,27 +33,6 @@ const upload = multer({ storage: storage })
 
 
 
-app.post("/update-description", (req, resp) => {
-    let desc = req.body
-    fs.readFile('data.json', 'utf8', (err, data) => {
-        if (err) {
-            console.error(err);
-            return resp.status(500).json({ message: 'Internal serer error' });
-        }
-        let jsonData = JSON.parse(data);
-
-        jsonData.description = desc.text;
-
-        fs.writeFile('data.json', JSON.stringify(jsonData), 'utf8', err => {
-            if (err) {
-                console.error(err);
-                return resp.status(500).json({ message: 'Internal serer error' });
-            }
-            resp.json({ message: 'JSON file updated successfully' })
-        })
-    })
-})
-
 app.post('/jsondata', (req, resp) => {
     fs.readFile(`${__dirname}/data.json`, 'utf8', (err, data) => {
         if (err) {
@@ -64,15 +43,27 @@ app.post('/jsondata', (req, resp) => {
     });
 })
 
-
 app.post('/api/upload', upload.single('file'), (req, resp) => {
     console.log("hmm")
     resp.json({ "message": "done" })
 })
 
+app.post("/update-description", (req, resp) => {
+    let desc = req.body
+    fs.readFile('data.json', 'utf8', function (err, data) {
+        console.log(data);
+        console.log(desc);
+        let jsonData = JSON.parse(data);
+        jsonData.description = desc.text;
+        console.log(jsonData);
+        const writeStream = fs.createWriteStream("data.json");
+        writeStream.write(JSON.stringify(jsonData));
+        writeStream.end();
+    })
+})
+
 app.post("/update-add-skill", upload.single('file'), (req, resp) => {
     let skill = req.body;
-    console.log("Current directory:", __dirname);
     fs.readFile('data.json', 'utf8', function (err, data) {
         console.log(data);
         console.log(skill);
@@ -261,6 +252,85 @@ app.post("/update-delete-project", (req, resp) => {
             if (element.link == project.link) {
                 console.log(jsonData.projectsData[i]);
                 jsonData.projectsData.splice(i, 1);
+            }
+            i++;
+        });
+
+        fs.writeFile('data.json', JSON.stringify(jsonData), 'utf8', err => {
+            if (err) {
+                console.error(err);
+                return resp.status(500).json({ message: 'Internal serer error' });
+            }
+            resp.json({ message: 'JSON file updated successfully' })
+        })
+    })
+})
+
+app.post("/update-add-qualification", (req, resp) => {
+    let qualification = req.body
+    fs.readFile('data.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return resp.status(500).json({ message: 'Internal serer error' });
+        }
+        let jsonData = JSON.parse(data);
+
+        console.log(qualification)
+        qualification.id = jsonData.qualificationsData.length + 1
+        jsonData.qualificationsData.push(qualification);
+
+        fs.writeFile('data.json', JSON.stringify(jsonData), 'utf8', err => {
+            if (err) {
+                console.error(err);
+                return resp.status(500).json({ message: 'Internal serer error' });
+            }
+            resp.json({ message: 'JSON file updated successfully' })
+        })
+    })
+})
+
+app.post("/update-edit-qualification", (req, resp) => {
+    let qualification = req.body
+    fs.readFile('data.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return resp.status(500).json({ message: 'Internal serer error' });
+        }
+        let jsonData = JSON.parse(data);
+
+        console.log(qualification.course)
+        jsonData.qualificationsData.forEach(element => {
+            if (element.course == qualification.course) {
+                element.percent = qualification.percent;
+            }
+        });
+
+        fs.writeFile('data.json', JSON.stringify(jsonData), 'utf8', err => {
+            if (err) {
+                console.error(err);
+                return resp.status(500).json({ message: 'Internal serer error' });
+            }
+            resp.json({ message: 'JSON file updated successfully' })
+        })
+    })
+})
+
+app.post("/update-delete-qualification", (req, resp) => {
+    let qualification = req.body
+    fs.readFile('data.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return resp.status(500).json({ message: 'Internal serer error' });
+        }
+        let jsonData = JSON.parse(data);
+
+        console.log(qualification.link)
+        let i = 0;
+        jsonData.qualificationsData.forEach(element => {
+            console.log(element)
+            if (element.course == qualification.course) {
+                console.log(jsonData.qualificationsData[i]);
+                jsonData.qualificationsData.splice(i, 1);
             }
             i++;
         });

@@ -12,26 +12,26 @@
 <body>
   <div class="container pt-5">
     <div class="mb-3">
-      <label for="formGroupExampleInput" class="form-label">Skill Name</label>
-      <input type="text" class="form-control" id="skillName" placeholder="Enter the Skill Name">
+      <label for="formGroupExampleInput" class="form-label">Qualification Name</label>
+      <input type="text" class="form-control" id="qualificationName" placeholder="Enter the Qualification Name">
     </div>
     <div class="mb-3">
-      <label for="formGroupExampleInput" class="form-label">Skill Percentage</label>
-      <input type="text" class="form-control" id="skillPercent" placeholder="Please enter number only don't enter percentage symbol (%)">
+      <label for="formGroupExampleInput" class="form-label">Qualification Percentage</label>
+      <input type="text" class="form-control" id="qualificationPercent" placeholder="Please enter number only don't enter percentage symbol (%)">
     </div>
-    <button class="btn btn-dark" onclick="addSkill()">Submit</button>
+    <button class="btn btn-dark" onclick="editQualification()">Submit</button>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <!-- <script src="/app.js"></script> -->
   <script>
-    function addSkill(){
-      fetch('https://portfolio-t9u7.onrender.com/update-add-skill',{
+    function editQualification(){
+      fetch('https://portfolio-t9u7.onrender.com/update-edit-qualification',{
         method:'POST',
         headers:{
           'Content-Type':'application/json'
         },
-        body: JSON.stringify({"skillName":`${document.getElementById("skillName").value}`,"percent":`${document.getElementById("skillPercent").value}`})
+        body: JSON.stringify({"course":`${document.getElementById("qualificationName").value}`,"percent":`${document.getElementById("qualificationPercent").value}`,"color":"#ec7aec"})
       }).then(response => response.json())
         .then(data => {console.log(data)
       }).catch(error => {console.error(error)});

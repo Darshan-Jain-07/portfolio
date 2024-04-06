@@ -1,6 +1,9 @@
-fetch('./data.json')
-  .then((response) => response.json())
-  .then((json) => {
+fetch('https://portfolio-g6y2.onrender.com/jsondata', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json; charset=utf-8' }
+}).then(json => {
+  console.log("hii")
+  console.log(json.json().then((json) => {
     console.log(json)
 
     const cirularProgressContainer = document.querySelector(".cirularProgressContainer");
@@ -37,4 +40,5 @@ fetch('./data.json')
         progress.querySelector(".course-value").innerHTML = progressStartValue + "%";
       }, speed);
     });
-  });
+  }))
+});
