@@ -54,15 +54,26 @@ app.post("/update-description", (req, resp) => {
     })
 })
 
+app.post('/jsondata', (req, resp) => {
+    fs.readFile(`${__dirname}/data.json`, 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        resp.send(data);
+    });
+})
+
+
 app.post('/api/upload', upload.single('file'), (req, resp) => {
     console.log("hmm")
-    resp.json({"message":"done"})
+    resp.json({ "message": "done" })
 })
 
 app.post("/update-add-skill", upload.single('file'), (req, resp) => {
     let skill = req.body;
     console.log("Current directory:", __dirname);
-    fs.readFile('data.json', 'utf8', function(err, data){
+    fs.readFile('data.json', 'utf8', function (err, data) {
         console.log(data);
         console.log(skill);
         let jsonData = JSON.parse(data);
