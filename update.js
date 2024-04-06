@@ -6,7 +6,9 @@ app.use(express.json());
 const port = 3200;
 var cors = require('cors');
 app.use(cors());
-app.options('*', cors());
+// app.options('*', cors());
+app.use(cors());
+const helmet = require('helmet');
 // var allowCrossDomain = function (req, res, next) {
 //     res.header('Access-Control-Allow-Origin', '*');
 //     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
@@ -18,7 +20,13 @@ app.options('*', cors());
 // app.engine('html', require('ejs').renderFile);
 const multer = require('multer');
 // https://elegant-puppy-6d6e58.netlify.app/data.json
-
+app.use(
+    helmet({
+        referrerPolicy: {
+            policy: "no-referrer",
+        },
+    })
+);
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
