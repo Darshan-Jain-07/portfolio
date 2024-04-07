@@ -7,7 +7,9 @@ const port = 3200;
 var cors = require('cors');
 app.use(cors());
 // app.options('*', cors());
-app.use(cors());
+app.use(cors({
+    origin:'https://elegant-puppy-6d6e58.netlify.app/'
+}));
 const helmet = require('helmet');
 // var allowCrossDomain = function (req, res, next) {
 //     res.header('Access-Control-Allow-Origin', '*');
