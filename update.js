@@ -6,18 +6,24 @@ app.use(express.json());
 const port = 3200;
 var cors = require('cors');
 app.use(cors());
-// app.options('*', cors());
+app.options('*', cors());
 app.use(cors({
     origin:'https://elegant-puppy-6d6e58.netlify.app/'
 }));
 const helmet = require('helmet');
-// var allowCrossDomain = function (req, res, next) {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-//     res.header('Access-Control-Allow-Headers', 'Content-Type');
-//     next();
-// }
-// app.use(allowCrossDomain);
+var allowCrossDomain = function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+}
+app.use(allowCrossDomain);
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 // app.set('', __dirname + '/');
 // app.engine('html', require('ejs').renderFile);
 const multer = require('multer');
