@@ -1,6 +1,7 @@
 // Description text code
 let jsonObj = {};
-fetch('https://portfolio-g6y2.onrender.com/jsondata', {
+fetch('https://portfolio-t9u7.onrender.com/jsondata', {
+// fetch('http://localhost:3200/jsondata', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json; charset=utf-8' }
 }).then(json => {
@@ -75,12 +76,7 @@ fetch('https://portfolio-g6y2.onrender.com/jsondata', {
 
     // Awards Code
     let awards = document.getElementById("awardsData");
-    let awardsData = [
-      { text: "Laptop", url: "/images/product/drone1.jpg" },
-      { text: "Mouse", url: "/images/product/drone2.jpg" },
-      { text: "Keyboard", url: "/images/product/drone3.jpg" },
-      { text: "Monitor", url: "/images/product/drone4.jpg" },
-    ];
+    let awardsData = json.awardsData;
     awardsData.forEach((award) => {
       awards.innerHTML += `<div class="column">
   <img src="${award.url}" alt="${award.text}" height="75px" width="auto" style="object-fit: cover;" onclick="showImage(this);">
@@ -91,11 +87,7 @@ fetch('https://portfolio-g6y2.onrender.com/jsondata', {
 
     // Reviews Code
     let reviews = document.getElementById("reviewsData");
-    let reviewsData = [
-      { name: "Holden Caulfield", text: "Synth chartreuse iPhone lomo cray raw denim brunch everyday carry neutra before they sold out fixie 90's microdosing. Tacos pinterest fanny pack venmo, post-ironic heirloom try-hard pabst authentic iceland." },
-      { name: "erhwr wsef", text: "Synth chartreuse iPhone lomo cray raw denim brunch everyday carry neutra before they sold out fixie 90's microdosing. Tacos pinterest fanny pack venmo, post-ironic heirloom try-hard pabst authentic iceland." },
-      { name: "hjyuj ghetey", text: "Synth chartreuse iPhone lomo cray raw denim brunch everyday carry neutra before they sold out fixie 90's microdosing. Tacos pinterest fanny pack venmo, post-ironic heirloom try-hard pabst authentic iceland." },
-    ];
+    let reviewsData = json.reviewsData;
     reviewsData.forEach((review) => {
       reviews.innerHTML += `<div class="p-4 md:w-1/2 w-full">
   <div class="h-full bg-gray-100 p-8 rounded">

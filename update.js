@@ -8,7 +8,7 @@ var cors = require('cors');
 app.use(cors());
 app.options('*', cors());
 app.use(cors({
-    origin:'https://elegant-puppy-6d6e58.netlify.app/'
+    origin: 'https://elegant-puppy-6d6e58.netlify.app/'
 }));
 const helmet = require('helmet');
 var allowCrossDomain = function (req, res, next) {
@@ -18,12 +18,12 @@ var allowCrossDomain = function (req, res, next) {
     next();
 }
 app.use(allowCrossDomain);
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
-  });
+});
 // app.set('', __dirname + '/');
 // app.engine('html', require('ejs').renderFile);
 const multer = require('multer');
@@ -46,6 +46,17 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage: storage })
+
+const storage_award = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, `./images/awards/`)
+    },
+    filename: async function (req, file, cb) {
+        cb(null, req.body.text + file.originalname)
+    }
+})
+
+const upload_award = multer({ storage: storage_award })
 
 
 
@@ -361,6 +372,115 @@ app.post("/update-delete-qualification", (req, resp) => {
     })
 })
 
+app.post("/update-add-award", upload_award.single('file'), async (req, resp) => {
+    // console.log(req)
+    req.body.url = `/images/awards/${req.body.text}${req.file.originalname}`;
+    // console.log(res)
+    // await upload_award(file);
+    fs.readFile('data.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return resp.status(500).json({ message: 'Internal serer error' });
+        }
+        let jsonData = JSON.parse(data);
+
+        // console.log(qualification)
+        // qualification.id = jsonData.qualificationsData.length + 1
+        jsonData.awardsData.push(req.body);
+
+        fs.writeFile('data.json', JSON.stringify(jsonData), 'utf8', err => {
+            if (err) {
+                console.error(err);
+                return resp.status(500).json({ message: 'Internal serer error' });
+            }
+            resp.json({ message: 'JSON file updated successfully' })
+        })
+    })
+})
+
+app.post("/update-delete-award", (req, resp) => {
+    let award = req.body
+    console.log(award)
+    fs.readFile('data.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return resp.status(500).json({ message: 'Internal serer error' });
+        }
+        let jsonData = JSON.parse(data);
+
+        console.log(award.AwardName)
+        let i = 0;
+        jsonData.awardsData.forEach(element => {
+            console.log(element)
+            if (element.text == award.AwardName) {
+                console.log(jsonData.awardsData[i]);
+                jsonData.awardsData.splice(i, 1);
+            }
+            i++;
+        });
+
+        fs.writeFile('data.json', JSON.stringify(jsonData), 'utf8', err => {
+            if (err) {
+                console.error(err);
+                return resp.status(500).json({ message: 'Internal serer error' });
+            }
+            resp.json({ message: 'JSON file updated successfully' })
+        })
+    })
+})
+
+app.post("/update-add-review", (req, resp) => {
+    let review = req.body
+    fs.readFile('data.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return resp.status(500).json({ message: 'Internal serer error' });
+        }
+        let jsonData = JSON.parse(data);
+
+        console.log(review)
+        review.id = jsonData.reviewsData.length + 1
+        jsonData.reviewsData.push(review);
+
+        fs.writeFile('data.json', JSON.stringify(jsonData), 'utf8', err => {
+            if (err) {
+                console.error(err);
+                return resp.status(500).json({ message: 'Internal serer error' });
+            }
+            resp.json({ message: 'JSON file updated successfully' })
+        })
+    })
+})
+
+app.post("/update-delete-review", (req, resp) => {
+    let review = req.body
+    fs.readFile('data.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return resp.status(500).json({ message: 'Internal serer error' });
+        }
+        let jsonData = JSON.parse(data);
+
+        // console.log(project.link)
+        let i = 0;
+        jsonData.reviewsData.forEach(element => {
+            console.log(element)
+            if (element.name == review.name && element.text == review.text) {
+                console.log(jsonData.reviewsData[i]);
+                jsonData.reviewsData.splice(i, 1);
+            }
+            i++;
+        });
+
+        fs.writeFile('data.json', JSON.stringify(jsonData), 'utf8', err => {
+            if (err) {
+                console.error(err);
+                return resp.status(500).json({ message: 'Internal serer error' });
+            }
+            resp.json({ message: 'JSON file updated successfully' })
+        })
+    })
+})
 // console.log("Current directory:", __dirname);
 
 app.listen(port, () => {

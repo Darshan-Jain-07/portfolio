@@ -1,6 +1,9 @@
-fetch('https://portfolio-g6y2.onrender.com/jsondata', {
+fetch('https://portfolio-t9u7.onrender.com/jsondata', {
+// fetch('http://localhost:3200/jsondata', {
   method: 'POST',
-  headers: { 'Content-Type': 'application/json; charset=utf-8' }
+  headers: { 
+    'Content-Type': 'application/json; charset=utf-8'
+  }
 }).then(json => {
   console.log("hii")
   console.log(json.json().then((json) => {
