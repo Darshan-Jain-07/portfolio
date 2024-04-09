@@ -377,22 +377,29 @@ app.post("/update-add-award", upload_award.single('file'), async (req, resp) => 
     req.body.url = `/images/awards/${req.body.text}${req.file.originalname}`;
     // console.log(res)
     // await upload_award(file);
+    console.log("hii")
     fs.readFile('data.json', 'utf8', (err, data) => {
         if (err) {
+            console.log("hii2")
             console.error(err);
             return resp.status(500).json({ message: 'Internal serer error' });
         }
+        console.log("hii3")
         let jsonData = JSON.parse(data);
-
+        
         // console.log(qualification)
         // qualification.id = jsonData.qualificationsData.length + 1
         jsonData.awardsData.push(req.body);
-
+        console.log("hii4")
+        
         fs.writeFile('data.json', JSON.stringify(jsonData), 'utf8', err => {
+            console.log("hii5")
             if (err) {
+                console.log("hii6")
                 console.error(err);
                 return resp.status(500).json({ message: 'Internal serer error' });
             }
+            console.log("hii7")
             resp.json({ message: 'JSON file updated successfully' })
         })
     })
