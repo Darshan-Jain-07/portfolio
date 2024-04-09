@@ -490,6 +490,7 @@ app.post("/update-delete-review", (req, resp) => {
 })
 
 app.get("/keepServerOn", (req, resp) => {
+    console.log("hahaha")
     resp.send();
 })
 
