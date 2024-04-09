@@ -459,6 +459,30 @@ app.post("/update-add-review", (req, resp) => {
     })
 })
 
+app.get("/update-add-review", (req, resp) => {
+    console.log(req.query)
+    let review = req.query
+    fs.readFile('data.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return resp.status(500).json({ message: 'Internal serer error' });
+        }
+        let jsonData = JSON.parse(data);
+
+        console.log(review)
+        review.id = jsonData.reviewsData.length + 1
+        jsonData.reviewsData.push(review);
+
+        fs.writeFile('data.json', JSON.stringify(jsonData), 'utf8', err => {
+            if (err) {
+                console.error(err);
+                return resp.status(500).json({ message: 'Internal serer error' });
+            }
+            resp.json({ message: 'JSON file updated successfully' })
+        })
+    })
+})
+
 app.post("/update-delete-review", (req, resp) => {
     let review = req.body
     fs.readFile('data.json', 'utf8', (err, data) => {
@@ -490,7 +514,6 @@ app.post("/update-delete-review", (req, resp) => {
 })
 
 app.get("/keepServerOn", (req, resp) => {
-    console.log("hahaha")
     resp.send();
 })
 
