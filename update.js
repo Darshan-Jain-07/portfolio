@@ -488,6 +488,14 @@ app.post("/update-delete-review", (req, resp) => {
         })
     })
 })
+
+app.get("/keepServerOn", (req, resp) => {
+    resp.send();
+})
+
+setInterval(async () => {
+	const res = await fetch(`https://portfolio-t9u7.onrender.com/keepServerOn`);
+}, 840000);
 // console.log("Current directory:", __dirname);
 
 app.listen(port, () => {
